@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management</title>
+</head>
+<body>
+    <h1>Student Management</h1>
+
+    <h2>Create Student</h2>
+    <label for="newStudentName">Name:</label>
+    <input type="text" id="newStudentName" placeholder="Enter student name">
+    <input type="text" id="newStudentLastName" placeholder="Enter student last name">
+    <input type="text" id="newStudentAge" placeholder="Enter student age">
+    <button onclick="createStudent()">Create Student</button>
+
+    <h2>Get Student by ID</h2>
+    <label for="singleStudent">Enter Student ID:</label>
+    <input type="text" id="singleStudent" placeholder="Enter student ID">
+    <button onclick="getStudent()">Get Student</button>
+    <div id="studentInfo" style="height: 100px; width: 700px;"></div>
+
+
+    <h2>Delete Student</h2>
+    <label for="deleteStudentId">Student ID:</label>
+    <input type="text" id="deleteStudentId" placeholder="Enter student ID">
+    <button onclick="deleteStudent()">Delete Student</button>
+
+    <h2>Update Student</h2>
+    <label for="updateStudentId">Student ID:</label>
+    <input type="text" id="updateStudentId" placeholder="Enter student ID">
+    <input type="text" id="newAge" placeholder="enter new age">
+    <button onclick="updateStudent()">Update Student</button>
+
+
+    <script  src="./index.js"></script>
+
+
+</body>
+</html>
