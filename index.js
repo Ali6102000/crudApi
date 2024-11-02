@@ -1,11 +1,12 @@
 // Function to create a student
+
 async function createStudent() {
       const name = document.getElementById('newStudentName').value;
       const lastName = document.getElementById('newStudentLastName').value;
       const age = document.getElementById('newStudentAge').value;
       
       //Specifying the Content-Type header as 'application/json' is important when you are sending JSON data in the body of a request.
-      const response = await fetch('http://localhost:7474/student', {
+      const response = await fetch('https://crudapi-v6k2.onrender.com/student', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json'
@@ -22,12 +23,12 @@ async function createStudent() {
   }
   
 
+//Function to get a student by its id
 
 async function getStudent() {
     const studentId = document.getElementById('singleStudent').value;
-    console.log("Student ID:", studentId);//debugging
 
-    const response = await fetch(`http://localhost:7474/getSingleStudent?id=${encodeURIComponent(studentId)}`, {
+    const response = await fetch(`https://crudapi-v6k2.onrender.com/getSingleStudent?id=${encodeURIComponent(studentId)}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -36,23 +37,61 @@ async function getStudent() {
 
     if (response.ok) {
         const student = await response.json();
-        console.log("Student Data:", student);//debugging
-        document.getElementById('studentInfo').innerHTML = `student id : ${student._id} <br> student name: ${student.name} <br> student last name: ${student.lastName} <br> student age: ${student.age}`;
-
+        //document.getElementById('studentInfo').innerHTML = `student id : ${student._id} <br> student name: ${student.name} <br> student last name: ${student.lastName} <br> student age: ${student.age}`;
+        let row=document.createElement('tr');
+        row.innerHTML=`
+        <td>${student._id}</td>
+        <td>${student.name}</td>
+        <td>${student.lastName}</td>
+        <td>${student.age}</td>
+        `
+        document.getElementById('studentInfo').appendChild(row);
         alert('Student found!');
     } else {
         alert('Error fetching student data.');
     }
 }
 
+  //Function to get all students
+  async function getAllStudents(){
+    
+    const response = await fetch('https://crudapi-v6k2.onrender.com/getAllStudents', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
 
-
+        if(response.ok){
+            const students = await response.json();
+            let studentsInfo=document.getElementById('studentsInfo');
+            students.forEach(element => {
+                let row=document.createElement("tr");
+                row.innerHTML=`
+                <td>${element._id}</td>
+                <td>${element.name}</td>
+                <td>${element.lastName}</td>
+                <td>${element.age}</td>
+                `
+             studentsInfo.appendChild(row);
+                console.log(element)
+            });
+            alert('students found successfully!!')
+        }
+        else{
+            alert('error while finding students!!')
+        }
+    
   
+
+  }
+      
+
   // Function to delete a student
   async function deleteStudent() {
       const studentId = document.getElementById('deleteStudentId').value;
   
-      const response = await fetch('http://localhost:7474/student', {
+      const response = await fetch('https://crudapi-v6k2.onrender.com/student', {
           method: 'DELETE',
           headers: {
               'Content-Type': 'application/json'
@@ -89,7 +128,5 @@ async function getStudent() {
 
 
   }
-
-      
 
 

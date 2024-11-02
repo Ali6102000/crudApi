@@ -26,7 +26,7 @@ app.delete('/student',async(req,res)=>{
     res.send("done");
 })
 
-app.get('/student',async(req,res)=>{
+app.get('/getAllStudents',async(req,res)=>{
     let data=await getAllStudents(uri);
     res.send(data);
 })
@@ -37,6 +37,8 @@ app.get('/getSingleStudent', async (req, res) => {
     let data = await getSingleStudent(studentId,uri);
     res.send(data);
 });
+
+
 
 app.post('/updateStudent',async (req,res)=>{
     const age=req.body.newAge;
