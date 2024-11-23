@@ -4,16 +4,18 @@ import cors from 'cors';
 import {createStudentDocument,removeStudentDocument,getAllStudents,getSingleStudent,updateStudent} from './src/db.js'
 
 config();
-
+const PORT=process.env.PORT||7474;
 let uri=process.env.MONGO_DB_CONNECTION;
 const app=express();
 
 app.use(cors());
+
 //hayde mahal lbody-parser
 app.use(express.json());
 app.get('/',(req,res)=>{
     res.send("hii")
 });
+
 
 app.post('/student',async (req,res)=>{
     await createStudentDocument(req.body,uri);
@@ -47,8 +49,8 @@ app.post('/updateStudent',async (req,res)=>{
     res.send("updated!!!")
 
 })
-app.listen(process.env.PORT,()=>{
-    console.log(`app listening to port ${process.env.PORT}`);
+app.listen(PORT,()=>{
+    console.log(`app listening to port ${PORT}`);
 });
 
 

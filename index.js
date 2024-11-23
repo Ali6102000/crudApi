@@ -6,7 +6,7 @@ async function createStudent() {
       const age = document.getElementById('newStudentAge').value;
       
       //Specifying the Content-Type header as 'application/json' is important when you are sending JSON data in the body of a request.
-      const response = await fetch('https://crudapi-v6k2.onrender.com/student', {
+      const response = await fetch('https://crudapi-1-w1u7.onrender.com/student', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json'
@@ -28,7 +28,7 @@ async function createStudent() {
 async function getStudent() {
     const studentId = document.getElementById('singleStudent').value;
 
-    const response = await fetch(`https://crudapi-v6k2.onrender.com/getSingleStudent?id=${encodeURIComponent(studentId)}`, {
+    const response = await fetch(`https://crudapi-1-w1u7.onrender.com/getSingleStudent?id=${encodeURIComponent(studentId)}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -55,7 +55,7 @@ async function getStudent() {
   //Function to get all students
   async function getAllStudents(){
     
-    const response = await fetch('https://crudapi-v6k2.onrender.com/getAllStudents', {
+    const response = await fetch('https://crudapi-1-w1u7.onrender.com/getAllStudents', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -65,6 +65,13 @@ async function getStudent() {
         if(response.ok){
             const students = await response.json();
             let studentsInfo=document.getElementById('studentsInfo');
+            studentsInfo.innerHTML=`  <tr>
+                <th>student id</th>
+                <th>student name</th>
+                <th>student last name</th>
+                <th>student age</th>
+            </tr>`;
+
             students.forEach(element => {
                 let row=document.createElement("tr");
                 row.innerHTML=`
@@ -91,7 +98,7 @@ async function getStudent() {
   async function deleteStudent() {
       const studentId = document.getElementById('deleteStudentId').value;
   
-      const response = await fetch('https://crudapi-v6k2.onrender.com/student', {
+      const response = await fetch('https://crudapi-1-w1u7.onrender.com/student', {
           method: 'DELETE',
           headers: {
               'Content-Type': 'application/json'
@@ -112,7 +119,7 @@ async function getStudent() {
     const studentId=document.getElementById("updateStudentId").value;
     const newAge=document.getElementById('newAge').value;
 
-    const response= await fetch('https://crudapi-v6k2.onrender.com/updateStudent',{
+    const response= await fetch('https://crudapi-1-w1u7.onrender.com/updateStudent',{
         method:'POST',
         headers:{
             'Content-Type': 'application/json'
